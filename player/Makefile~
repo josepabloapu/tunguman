@@ -1,0 +1,14 @@
+all: main
+
+main: mediaapp.o player.o  
+	g++ mediaapp.o player.o -o main
+
+mediaapp.o: mediaapp.cpp
+	g++ -I/usr/include/qt4/QtGui/QWidget -c mediaapp.cpp
+
+player.o: player.cpp
+	g++ -c player.cpp
+
+clean:
+	rm -rf *o main
+

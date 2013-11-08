@@ -1,0 +1,47 @@
+\documentclass[a4paper]{article}
+
+\usepackage[spanish]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[colorinlistoftodos]{todonotes}
+\usepackage{hyperref}
+
+\title{Propuesta: Fut Zoom\&Tagger}
+\author{Francisco Mata, Jose Pablo Apú, Juan Carlos Montero}
+
+\begin{document}
+\maketitle
+
+\section*{Justificación}
+
+El solucionar problemas de terceros, es un reto bastante productivo. Ya que lo introduce a un escenario más acorde a lo que uno se enfrentará de ahora en adelante. Por lo que el lograr este desafió lo convierte a un trabajo de suma importancia. Además el colaborar para laboratorio de investigación hace que el proyecto sea más enriquecedor. 
+
+\section*{Objetivo General}
+Crear una applicación que logre satisfacer las necesidades del PRISLab.
+
+\section*{Objetivos Específicos}
+\begin{itemize}
+\item Implementar una función zoom, para que sea más fácil su manipulación.
+\item Que el programa sea capáz de etiquetar al jugador en escena y una jugada en determinano intervalo de tiempo.
+\item Que el programa maneje una base de datos y guarde los datos en la misma.
+\end{itemize}
+
+
+\section*{Metodología y Cronograma}
+\begin{itemize}
+\item Diseñar la interfáz gráfica así como sus funciones para tener masomenos la idea de lo se va a crear. \\(semana del 28 al 3 de noviembre)
+\item Crear el ambiente de trabajo, es decir instalar todas las librerías necesarias del projecto y tenerla bien configuradas. \\(semana del 4 al 10 de noviembre)
+\item Crear los métodos suficientes para cumplir con los objetivos. \\(2 semanas: del 11 al 23 de noviembre)
+\item Revisión, para corroborar si cumple con las necesidades del PRISLab. \\(semana del 25 al 1 de diciembre)
+\item Corrección y ajusted propuestos por el PRISLab. \\(se espera cuncluir antes del 15 de diciembre)
+\end{itemize}
+
+\begin{thebibliography}{10}
+\bibitem{tangent}\url{http://qt-projectorg}
+\bibitem{opengl}\url{http://gstreamer.freedesktop.org}
+\bibitem{dundas}\url{http://gstreamer.freedesktop.org/data/doc/gstreamer/head/qt-gstreamer/html/annotated.html}
+\end{thebibliography}
+
+
+\end{document}

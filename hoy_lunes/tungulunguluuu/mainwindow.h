@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QVector>
+#include <QString>
 
 namespace Ui {
 class MainWindow;
@@ -16,9 +17,8 @@ public:
     void open(QImage);
     bool mousePressEventPaint(QObject *obj, QEvent *event);
     void setpixmap(QPixmap* image_pixmap);
-    int i;
-    QVector<int> x;
-    QVector<int> y;
+    QString coordenadas;
+    bool variable;
 
 public:
     explicit MainWindow(QWidget *parent = 0);

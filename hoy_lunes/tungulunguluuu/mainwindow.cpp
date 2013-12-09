@@ -9,20 +9,22 @@
 #include <QMouseEvent>
 #include <iostream>
 #include <QtGui>
+#include <QString>
 
 using namespace std;
 
-int i=0;
-QVector<int> x[500];
-QVector<int> y[500];
+
+
+bool variable = false;
 
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow){
-    i=0;
+
     QVector<int> x;
     QVector<int> y;
+    coordenadas = "";
 
 }
 
@@ -33,27 +35,46 @@ MainWindow::~MainWindow(){
 
 //Tracking cursor position
 bool MainWindow::eventFilter(QObject *obj, QEvent *event){
+
+
+
     if (event->type() == QEvent::MouseMove){
+
         QMouseEvent *mouseEvent = static_cast<QMouseEvent*>(event);
+
         statusBar()->showMessage(QString("Cursor position (%1,%2)").arg(mouseEvent->pos().x()).arg(mouseEvent->pos().y()));
+
+        if (variable == true){
+            coordenadas+= "Pos X: ";
+             coordenadas+= QString::number(mouseEvent->pos().x());
+              coordenadas+= "Pos Y: ";
+               coordenadas+= QString::number(mouseEvent->pos().y());
+
+
+            qDebug() << coordenadas;
+
+
+        }
       }
 
     if (event->type() == QEvent::MouseButtonPress){
+
         QMouseEvent *mouseEvent = static_cast<QMouseEvent*>(event);
 
-
         if (mouseEvent->button() == Qt::LeftButton){
-           // bool tungu = true;
-           // while (tungu == true){
-                x[i]=mouseEvent->pos().x();
-                y[i]=mouseEvent->pos().y();
-                i++;
-                qDebug() << x[i] << " - " << y[i];
 
-                if (mouseEvent->button() == Qt::RightButton)
-                    return true;
+                variable=true;
 
-        }
+
+       }
+
+
+        if (mouseEvent->button() == Qt::RightButton){
+
+                variable=false;
+                qDebug() << "false";
+       }
+
 
       }
 

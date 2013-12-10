@@ -1,0 +1,13 @@
+all:
+
+Main: main.o movieplayer.o
+	g++ -o main.o movieplayer.o Main
+
+main.o:
+	g++ -c main.cpp
+
+movieplayer.o:
+	g++ -c movieplayer.cpp 
+
+clean:
+	rm -rf *.o

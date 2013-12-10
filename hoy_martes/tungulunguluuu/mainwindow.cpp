@@ -5,6 +5,7 @@
 #include <QVBoxLayout>
 #include <QVector>
 #include <QtDebug>
+
 #include <QFile>
 #include <QCoreApplication>
 #include <QTextStream>
@@ -14,11 +15,16 @@
 #include <QString>
 
 using namespace std;
+
+
+
 bool variable = false;
+
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow){
+
     QVector<int> x;
     QVector<int> y;
     coordenadas = "";
@@ -29,39 +35,60 @@ MainWindow::~MainWindow(){
     delete ui;
 }
 
+
 //Tracking cursor position
 bool MainWindow::eventFilter(QObject *obj, QEvent *event){
+
+
+
     if (event->type() == QEvent::MouseMove){
+
         QMouseEvent *mouseEvent = static_cast<QMouseEvent*>(event);
+
         statusBar()->showMessage(QString("Cursor position (%1,%2)").arg(mouseEvent->pos().x()).arg(mouseEvent->pos().y()));
 
         if (variable == true){
+            
             coordenadas+= "Pos X: ";
-            coordenadas+= QString::number(mouseEvent->pos().x());
-            coordenadas+= "Pos Y: ";
-            coordenadas+= QString::number(mouseEvent->pos().y());
-            qDebug() << coordenadas;
-        }
+             coordenadas+= QString::number(mouseEvent->pos().x());
+              coordenadas+= "Pos Y: ";
+               coordenadas+= QString::number(mouseEvent->pos().y());
 
-    }
+
+            qDebug() << coordenadas;
+
+
+        }
+      }
 
     if (event->type() == QEvent::MouseButtonPress){
 
-        QMouseEvent *mouseEvent = static_cast<QMouseEvent*>(event)
-                ;
-        if (mouseEvent->button() == Qt::LeftButton)
+        QMouseEvent *mouseEvent = static_cast<QMouseEvent*>(event);
+
+        if (mouseEvent->button() == Qt::LeftButton){
+
                 variable=true;
 
-        if (mouseEvent->button() == Qt::RightButton)
-                variable=false;
 
-    }
+       }
+
+
+        if (mouseEvent->button() == Qt::RightButton){
+
+                variable=false;
+                qDebug() << "false";
+       }
+
+
+      }
+
 
     return false;
 }
 
-void MainWindow::open(QImage foto){
+void MainWindow::open(QImage foto)
 
+{
     QImage photo = foto;
 
     QPixmap pixmap(QPixmap::fromImage(photo));
@@ -139,7 +166,7 @@ bool MainWindow::mousePressEventPaint(QObject *obj, QEvent *event){
 
 
 /*************************/// Funciones de Botones /**********************************+////
-/*
+
 void MainWindow::zoomIn()
 
 {
@@ -163,4 +190,3 @@ void MainWindow::scaleImage(double factor)
     // Boton // zoomInAct->setEnabled(scaleFactor < 3.0);
     // Boton // zoomOutAct->setEnabled(scaleFactor > 0.333);
 }
-*/

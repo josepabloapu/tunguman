@@ -95,9 +95,9 @@
              unsetCursor();
  #endif
              update();
-         }
-
-    else {
+         } 
+	
+	else {
 
              if (brushInterface) {
 

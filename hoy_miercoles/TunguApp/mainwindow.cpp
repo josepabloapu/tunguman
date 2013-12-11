@@ -14,20 +14,18 @@ MainWindow::~MainWindow()
 }
 
 void MainWindow::open(QImage qimage)
-
 {
     picture = qimage;
-
-    //QPixmap pixmap(QPixmap::fromImage(photo));
-    //QIcon icon(pixmap);
     ui->setupUi(this);
     ui->imageDisplay->setPixmap(QPixmap::fromImage(picture));
+}
 
-    //ui->button_save->setIcon(icon);
-    //ui->button_save->setIconSize(pixmap.rect().size()*0.077);
+void MainWindow::setTime(int time)
+{
+    this->timeMS = time;
+}
 
-    //ui->imageDisplay->setStyleSheet("background-color: black");
-    //ui->imageDisplay->setMouseTracking(true);
-    //ui->imageDisplay->installEventFilter(this);
-
-    }
+int MainWindow::getTime()
+{
+    return this->timeMS;
+}

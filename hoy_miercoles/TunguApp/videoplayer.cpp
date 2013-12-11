@@ -7,7 +7,7 @@
 #include <QImage>
 
 VideoPlayer::VideoPlayer(QWidget *parent) : QWidget(parent)
-{
+{   
     movie = new Phonon::MediaObject(this);
     video = new Phonon::VideoWidget(this);
     audio = new Phonon::AudioOutput(Phonon::VideoCategory,this);
@@ -17,25 +17,24 @@ VideoPlayer::VideoPlayer(QWidget *parent) : QWidget(parent)
     Phonon::createPath(movie, video);
     Phonon::createPath(movie, audio);
 
-    //createControls();
+    createControls();
     createButtons();
-
-    //connect(movie, SIGNAL(tick(int)), this, SLOT(updateSeekSlider()));
-    //connect(movie, SIGNAL(stateChanged(QMovie::MovieState)),this, SLOT(updateButtons()));
-    //connect(fitCheckBox, SIGNAL(clicked()), this, SLOT(fitToWindow()));
-    //connect(frameSlider, SIGNAL(valueChanged(int)), this, SLOT(goToFrame(int)));
-    //connect(speedSpinBox, SIGNAL(valueChanged(int)), movie, SLOT(setSpeed(int)));
 
     mainLayout = new QVBoxLayout;
     mainLayout->addWidget(video);
+    mainLayout->addLayout(controlsLayout);
     mainLayout->addLayout(buttonsLayout);
-    //mainLayout->addLayout(controlsLayout);
+
     setLayout(mainLayout);
 }
 
 VideoPlayer::~VideoPlayer()
 {
-
+    delete movie;
+    delete video;
+    delete audio;
+    delete seekSlider;
+    delete volumeSlider;
 }
 
 void VideoPlayer::open()
@@ -58,15 +57,24 @@ void VideoPlayer::snapshot()
     MainWindow *mainWindow;
     mainWindow = new MainWindow();
     mainWindow->open(video->snapshot());
+    mainWindow->setTime(movie->currentTime());
     mainWindow->show();
 }
 
 void VideoPlayer::createControls()
 {
-    seekSlider = new Phonon::SeekSlider(this);
-    volumeSlider = new Phonon::VolumeSlider(this);
+    seekSlider = new Phonon::SeekSlider;
+    seekSlider->setMediaObject(movie);
+
+    seekSpinBox = new QSpinBox;
+    seekSpinBox->setRange(0, movie->totalTime());
+
+    volumeSlider = new Phonon::VolumeSlider;
+    volumeSlider->setAudioOutput(audio);
+
     controlsLayout = new QGridLayout;
-    controlsLayout->addWidget(seekSlider, 1, 1, 1, 5);
+    controlsLayout->addWidget(seekSlider, 1, 1, 1, 4);
+    controlsLayout->addWidget(seekSpinBox, 1, 5, 1, 1);
     controlsLayout->addWidget(volumeSlider, 1, 6, 1, 2);
 }
 

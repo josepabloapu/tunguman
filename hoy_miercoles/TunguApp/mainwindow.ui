@@ -6,8 +6,13 @@
    <rect>
     <x>0</x>
     <y>0</y>
+<<<<<<< HEAD
     <width>741</width>
     <height>605</height>
+=======
+    <width>512</width>
+    <height>600</height>
+>>>>>>> 6a304bb74efd4b4133a62ad52a118ec256e0fd32
    </rect>
   </property>
   <property name="font">
@@ -1901,6 +1906,7 @@
    <widget class="QLabel" name="label_action">
     <property name="geometry">
      <rect>
+<<<<<<< HEAD
       <x>30</x>
       <y>430</y>
       <width>66</width>
@@ -1968,6 +1974,12 @@
       <y>20</y>
       <width>531</width>
       <height>241</height>
+=======
+      <x>0</x>
+      <y>0</y>
+      <width>512</width>
+      <height>360</height>
+>>>>>>> 6a304bb74efd4b4133a62ad52a118ec256e0fd32
      </rect>
     </property>
     <property name="text">
@@ -1980,8 +1992,13 @@
     <rect>
      <x>0</x>
      <y>0</y>
+<<<<<<< HEAD
      <width>741</width>
      <height>30</height>
+=======
+     <width>512</width>
+     <height>27</height>
+>>>>>>> 6a304bb74efd4b4133a62ad52a118ec256e0fd32
     </rect>
    </property>
   </widget>

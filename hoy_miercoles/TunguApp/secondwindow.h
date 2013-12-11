@@ -15,7 +15,9 @@ class SecondWindow : public QMainWindow
 public:
     explicit SecondWindow(QWidget *parent = 0);
     ~SecondWindow();
-    QRect = rect;
+    void open(QImage qimage);
+    QRect rect;
+    QPixmap Crop();
     QRect getRect(QEvent*);
     QPixmap pixmap;
     bool variable;

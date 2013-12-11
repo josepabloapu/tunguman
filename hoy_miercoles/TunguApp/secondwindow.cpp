@@ -2,14 +2,16 @@
 #include "ui_secondwindow.h"
 #include <QPainter>
 
+
+
 SecondWindow::SecondWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::SecondWindow)
 {
     ui->setupUi(this);
 
-	QRect = rect;
-	QPixmap pixmap;
+    QRect rect;
+    QPixmap pixmap;
 	bool variable = false;
 
 
@@ -33,15 +35,12 @@ void SecondWindow::open(QImage qimage)
 
     pixmap = QPixmap::fromImage(picture);
 
-
-    pixmap.scaled(Width,Height,Qt::KeepAspectRatio);
-
-
     ui->image_view->setPixmap(pixmap);
     ui->image_view->setMouseTracking(true);
     ui->image_view->installEventFilter(this);
 
-    rect = getRect();
+    QPixmap crop = Crop();
+
 
 }
 
@@ -49,7 +48,7 @@ void SecondWindow::open(QImage qimage)
 QPixmap SecondWindow::Crop (){
 
 
-rect = getRect();
+rect = getRect(QEvent* qevent);
 
 QPixmap crop = pixmap.copy (rect); 
 
@@ -83,9 +82,9 @@ QRect SecondWindow::getRect(QEvent* event){
            QPen pen(Color, 8, Qt::SolidLine);
            painter.setPen(pen);
            painter.drawLine(x,y,mouseEvent->pos().x(),y);
-	   painter.drawLine(x,y,x,mouseEvent->pos().y());
+           painter.drawLine(x,y,x,mouseEvent->pos().y());
            painter.drawLine(mouseEvent->pos().x(),y,x,mouseEvent->pos().y());
-	   painter.drawLine(x,mouseEvent->pos().y(),mouseEvent->pos().x(),y);
+           painter.drawLine(x,mouseEvent->pos().y(),mouseEvent->pos().x(),y);
 
            ui->image_view->setPixmap(pixmap);
 

@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created: Wed Dec 11 20:16:14 2013
+** Created: Mon Dec 9 00:51:42 2013
 **      by: Qt User Interface Compiler version 4.8.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -55,7 +55,7 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QString::fromUtf8("MainWindow"));
-        MainWindow->resize(741, 605);
+        MainWindow->resize(578, 581);
         QFont font;
         font.setPointSize(12);
         font.setBold(false);
@@ -342,11 +342,11 @@ public:
         label_frame->setFont(font4);
         image_view = new QLabel(centralWidget);
         image_view->setObjectName(QString::fromUtf8("image_view"));
-        image_view->setGeometry(QRect(36, 20, 531, 241));
+        image_view->setGeometry(QRect(20, 10, 511, 287));
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QString::fromUtf8("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 741, 30));
+        menuBar->setGeometry(QRect(0, 0, 578, 27));
         MainWindow->setMenuBar(menuBar);
         mainToolBar = new QToolBar(MainWindow);
         mainToolBar->setObjectName(QString::fromUtf8("mainToolBar"));
@@ -356,6 +356,8 @@ public:
         MainWindow->setStatusBar(statusBar);
 
         retranslateUi(MainWindow);
+        QObject::connect(button_zoomin, SIGNAL(clicked()), MainWindow, SLOT(zoomIn()));
+        QObject::connect(button_zoomout, SIGNAL(clicked()), MainWindow, SLOT(zoomOut()));
 
         QMetaObject::connectSlotsByName(MainWindow);
     } // setupUi
@@ -375,7 +377,7 @@ public:
         label_action->setText(QApplication::translate("MainWindow", "Acci\303\263n", 0, QApplication::UnicodeUTF8));
         display_frame->setText(QApplication::translate("MainWindow", "TextLabel", 0, QApplication::UnicodeUTF8));
         label_frame->setText(QApplication::translate("MainWindow", "Frame:", 0, QApplication::UnicodeUTF8));
-        image_view->setText(QApplication::translate("MainWindow", "TextLabel", 0, QApplication::UnicodeUTF8));
+        image_view->setText(QString());
     } // retranslateUi
 
 };

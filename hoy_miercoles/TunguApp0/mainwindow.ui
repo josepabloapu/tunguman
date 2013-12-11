@@ -6,8 +6,13 @@
    <rect>
     <x>0</x>
     <y>0</y>
+<<<<<<< HEAD
+    <width>512</width>
+    <height>600</height>
+=======
     <width>741</width>
     <height>605</height>
+>>>>>>> 347aba52181178afd1c7e84f4892d67d01918223
    </rect>
   </property>
   <property name="font">
@@ -1901,6 +1906,12 @@
    <widget class="QLabel" name="label_action">
     <property name="geometry">
      <rect>
+<<<<<<< HEAD
+      <x>0</x>
+      <y>0</y>
+      <width>512</width>
+      <height>360</height>
+=======
       <x>30</x>
       <y>430</y>
       <width>66</width>
@@ -1968,10 +1979,17 @@
       <y>20</y>
       <width>531</width>
       <height>241</height>
+>>>>>>> 347aba52181178afd1c7e84f4892d67d01918223
      </rect>
+    </property>
+    <property name="autoFillBackground">
+     <bool>false</bool>
     </property>
     <property name="text">
      <string>TextLabel</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
     </property>
    </widget>
   </widget>
@@ -1980,8 +1998,13 @@
     <rect>
      <x>0</x>
      <y>0</y>
+<<<<<<< HEAD
+     <width>512</width>
+     <height>27</height>
+=======
      <width>741</width>
      <height>30</height>
+>>>>>>> 347aba52181178afd1c7e84f4892d67d01918223
     </rect>
    </property>
   </widget>

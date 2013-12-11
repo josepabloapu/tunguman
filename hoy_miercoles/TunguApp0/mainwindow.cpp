@@ -29,8 +29,22 @@ MainWindow::~MainWindow()
 }
 
 void MainWindow::open(QImage qimage)
-
 {
+<<<<<<< HEAD
+    picture = qimage;
+    ui->setupUi(this);
+    ui->imageDisplay->setPixmap(QPixmap::fromImage(picture));
+}
+
+void MainWindow::setTime(int time)
+{
+    this->timeMS = time;
+}
+
+int MainWindow::getTime()
+{
+    return this->timeMS;
+=======
 
     ui->setupUi(this);
 
@@ -63,8 +77,8 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event){
 
         if (variable == true){
 
-            int calibrarx =0; //ERROR AQUI ES UNA APROXIMACION HAY QUE CUADRAR LOS 2 MARCOS DE REFERENCIA!!!!***************************
-            int calibrary =0;
+            int calibrarx =85; //ERROR AQUI ES UNA APROXIMACION HAY QUE CUADRAR LOS 2 MARCOS DE REFERENCIA!!!!***************************
+            int calibrary =96;
 
             if(x!=-1 && y!=-1){
                if(x!=0 && y!=0){
@@ -159,4 +173,5 @@ void MainWindow::scaleImage(double factor)
     Q_ASSERT(imageLabel->pixmap());
     scaleFactor *= factor;
 
+>>>>>>> 347aba52181178afd1c7e84f4892d67d01918223
 }

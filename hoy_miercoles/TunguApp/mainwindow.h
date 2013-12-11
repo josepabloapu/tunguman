@@ -19,6 +19,7 @@ public:
 
 private:
     Ui::MainWindow *ui;
+    QImage picture;
 };
 
 #endif // MAINWINDOW_H

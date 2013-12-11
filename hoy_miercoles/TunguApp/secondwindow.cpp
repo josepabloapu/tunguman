@@ -20,7 +20,7 @@ SecondWindow::~SecondWindow()
     delete ui;
 }
 
-void MainWindow::open(QImage qimage)
+void SecondWindow::open(QImage qimage)
 
 {
 
@@ -46,12 +46,12 @@ void MainWindow::open(QImage qimage)
 }
 
 
-QPixmap Crop (){
+QPixmap SecondWindow::Crop (){
 
 
 rect = getRect();
 
-QPixmap crop = pixmap.copy (rect) 
+QPixmap crop = pixmap.copy (rect); 
 
 delete ui;
 
@@ -59,7 +59,7 @@ return crop;
 
 }
 
-QRect getRect(QEvent* event){
+QRect SecondWindow::getRect(QEvent* event){
 
     if (event->type() == QEvent::MouseMove){
 
@@ -75,6 +75,9 @@ QRect getRect(QEvent* event){
 
 	if(variable==true){
 
+		xf=mouseEvent->pos().x();
+		yf=mouseEvent->pos().y();
+
            painter.begin(&pixmap);
            QColor Color = QColor(200,20,230,255);
            QPen pen(Color, 8, Qt::SolidLine);
@@ -85,9 +88,6 @@ QRect getRect(QEvent* event){
 	   painter.drawLine(x,mouseEvent->pos().y(),mouseEvent->pos().x(),y);
 
            ui->image_view->setPixmap(pixmap);
-
-		xf=mouseEvent->pos().x();
-		yf=mouseEvent->pos().y();
 
 
 		if(mouseEvent->button() == Qt::RightButton){

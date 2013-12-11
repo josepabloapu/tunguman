@@ -1,31 +1,36 @@
 #include "videoplayer.h"
+#include "mainwindow.h"
 
 #include <QFileDialog>
 #include <QString>
 #include <QtGui>
+#include <QImage>
 
 VideoPlayer::VideoPlayer(QWidget *parent) : QWidget(parent)
 {
-    Phonon::MediaObject *movie = new Phonon::MediaObject(this);
-    Phonon::VideoWidget *video = new Phonon::VideoWidget(this);
-    video->setAspectRatio(Phonon::VideoWidget::AspectRatioAuto);
-    video->setScaleMode(Phonon::VideoWidget::ScaleAndCrop);
+    movie = new Phonon::MediaObject(this);
+    video = new Phonon::VideoWidget(this);
+    audio = new Phonon::AudioOutput(Phonon::VideoCategory,this);
+
     video->setGeometry(0,0,600,400);
-    Phonon::AudioOutput *audio = new Phonon::AudioOutput(Phonon::VideoCategory,this);
-    movie->clearQueue();
-    Phonon::createPath(movie, video); // to link the mediaobject with the video widget.
+
+    Phonon::createPath(movie, video);
     Phonon::createPath(movie, audio);
 
+    //createControls();
     createButtons();
+
+    //connect(movie, SIGNAL(tick(int)), this, SLOT(updateSeekSlider()));
+    //connect(movie, SIGNAL(stateChanged(QMovie::MovieState)),this, SLOT(updateButtons()));
+    //connect(fitCheckBox, SIGNAL(clicked()), this, SLOT(fitToWindow()));
+    //connect(frameSlider, SIGNAL(valueChanged(int)), this, SLOT(goToFrame(int)));
+    //connect(speedSpinBox, SIGNAL(valueChanged(int)), movie, SLOT(setSpeed(int)));
 
     mainLayout = new QVBoxLayout;
     mainLayout->addWidget(video);
     mainLayout->addLayout(buttonsLayout);
+    //mainLayout->addLayout(controlsLayout);
     setLayout(mainLayout);
-
-    QString fileName = QFileDialog::getOpenFileName(this, tr("open a file"));
-    movie->enqueue(Phonon::MediaSource(fileName));
-    movie->play();
 }
 
 VideoPlayer::~VideoPlayer()
@@ -43,8 +48,26 @@ void VideoPlayer::open()
 void VideoPlayer::openFile(const QString &fileName)
 {
     currentMovieDirectory = QFileInfo(fileName).path();
-    movie->stop();
     movie->enqueue(Phonon::MediaSource(fileName));
+    video->setScaleMode(Phonon::VideoWidget::ScaleAndCrop);
+}
+
+void VideoPlayer::snapshot()
+{
+
+    MainWindow *mainWindow;
+    mainWindow = new MainWindow();
+    mainWindow->open(video->snapshot());
+    mainWindow->show();
+}
+
+void VideoPlayer::createControls()
+{
+    seekSlider = new Phonon::SeekSlider(this);
+    volumeSlider = new Phonon::VolumeSlider(this);
+    controlsLayout = new QGridLayout;
+    controlsLayout->addWidget(seekSlider, 1, 1, 1, 5);
+    controlsLayout->addWidget(volumeSlider, 1, 6, 1, 2);
 }
 
 void VideoPlayer::createButtons()
@@ -61,20 +84,20 @@ void VideoPlayer::createButtons()
     playButton->setIcon(style()->standardIcon(QStyle::SP_MediaPlay));
     playButton->setIconSize(iconSize);
     playButton->setToolTip(tr("Play"));
-    connect(playButton, SIGNAL(clicked()), this, SLOT(play()));
+    connect(playButton, SIGNAL(clicked()), movie, SLOT(play()));
 
     pauseButton = new QToolButton;
     pauseButton->setCheckable(true);
     pauseButton->setIcon(style()->standardIcon(QStyle::SP_MediaPause));
     pauseButton->setIconSize(iconSize);
     pauseButton->setToolTip(tr("Pause"));
-    connect(pauseButton, SIGNAL(clicked(bool)), this, SLOT(pause()));
+    connect(pauseButton, SIGNAL(clicked(bool)), movie, SLOT(pause()));
 
     stopButton = new QToolButton;
     stopButton->setIcon(style()->standardIcon(QStyle::SP_MediaStop));
     stopButton->setIconSize(iconSize);
     stopButton->setToolTip(tr("Stop"));
-    connect(stopButton, SIGNAL(clicked()), this, SLOT(stop()));
+    connect(stopButton, SIGNAL(clicked()), movie, SLOT(stop()));
 
     quitButton = new QToolButton;
     quitButton->setIcon(style()->standardIcon(QStyle::SP_DialogCloseButton));
@@ -82,18 +105,19 @@ void VideoPlayer::createButtons()
     quitButton->setToolTip(tr("Quit"));
     connect(quitButton, SIGNAL(clicked()), this, SLOT(close()));
 
+    captureButton = new QToolButton;
+    captureButton->setIcon(style()->standardIcon(QStyle::SP_ArrowDown));
+    captureButton->setIconSize(iconSize);
+    captureButton->setToolTip(tr("Snapshot"));
+    connect(captureButton, SIGNAL(clicked()), this, SLOT(snapshot()));
+
     buttonsLayout = new QHBoxLayout;
     buttonsLayout->addStretch();
     buttonsLayout->addWidget(openButton);
     buttonsLayout->addWidget(playButton);
     buttonsLayout->addWidget(pauseButton);
     buttonsLayout->addWidget(stopButton);
+    buttonsLayout->addWidget(captureButton);
     buttonsLayout->addWidget(quitButton);
     buttonsLayout->addStretch();
 }
-
-
-//hay que crear estas funciones
-void VideoPlayer::stop () {}
-void VideoPlayer::play () {}
-void VideoPlayer::pause () {}

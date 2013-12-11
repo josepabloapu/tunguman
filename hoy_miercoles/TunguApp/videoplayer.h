@@ -5,6 +5,8 @@
 #include <phonon/MediaObject>
 #include <phonon/VideoWidget>
 #include <phonon/AudioOutput>
+#include <phonon/SeekSlider>
+#include <phonon/VolumeSlider>
 
 QT_BEGIN_NAMESPACE
 class QCheckBox;
@@ -31,15 +33,15 @@ public:
 
 private slots:
     void open();
-    void stop ();
-    void play ();
-    void pause ();
-
+    void snapshot();
+    //void updateSeekSlider();
 
 
 
 private:
+    void createControls();
     void createButtons();
+
     QString currentMovieDirectory;
     Phonon::MediaObject *movie;
     Phonon::VideoWidget *video;
@@ -49,6 +51,17 @@ private:
     QToolButton *pauseButton;
     QToolButton *stopButton;
     QToolButton *quitButton;
+    QToolButton *captureButton;
+
+    QCheckBox *fitCheckBox;
+
+
+    QLabel *sliderLabel;
+    Phonon::SeekSlider *seekSlider;
+    Phonon::VolumeSlider *volumeSlider;
+
+    QSpinBox *speedSpinBox;
+    QLabel *speedLabel;
 
     QGridLayout *controlsLayout;
     QHBoxLayout *buttonsLayout;

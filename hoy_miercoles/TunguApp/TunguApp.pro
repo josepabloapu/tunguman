@@ -13,6 +13,11 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        videoplayer.cpp
+        videoplayer.cpp \
+    mainwindow.cpp
 
-HEADERS  += videoplayer.h
+HEADERS  += videoplayer.h \
+    mainwindow.h
+
+FORMS += \
+    mainwindow.ui

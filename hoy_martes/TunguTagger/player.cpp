@@ -30,8 +30,7 @@
 #include <QGst/Event>
 #include <QGst/StreamVolume>
 
-Player::Player(QWidget *parent)
-    : QGst::Ui::VideoWidget(parent)
+Player::Player(QWidget *parent): QGst::Ui::VideoWidget(parent)
 {
     //this timer is used to tell the ui to change its position slider & label
     //every 100 ms, but only when the pipeline is playing

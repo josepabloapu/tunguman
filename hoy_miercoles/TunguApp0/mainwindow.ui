@@ -7,17 +7,12 @@
     <x>0</x>
     <y>0</y>
 <<<<<<< HEAD
-<<<<<<< HEAD
-    <width>741</width>
-    <height>605</height>
-=======
     <width>512</width>
     <height>600</height>
->>>>>>> 6a304bb74efd4b4133a62ad52a118ec256e0fd32
 =======
     <width>741</width>
     <height>605</height>
->>>>>>> 7eb85d0589d9ec6e7c402493be7eb08aedad1a7d
+>>>>>>> 347aba52181178afd1c7e84f4892d67d01918223
    </rect>
   </property>
   <property name="font">
@@ -1912,9 +1907,11 @@
     <property name="geometry">
      <rect>
 <<<<<<< HEAD
-<<<<<<< HEAD
+      <x>0</x>
+      <y>0</y>
+      <width>512</width>
+      <height>360</height>
 =======
->>>>>>> 7eb85d0589d9ec6e7c402493be7eb08aedad1a7d
       <x>30</x>
       <y>430</y>
       <width>66</width>
@@ -1982,19 +1979,17 @@
       <y>20</y>
       <width>531</width>
       <height>241</height>
-<<<<<<< HEAD
-=======
-      <x>0</x>
-      <y>0</y>
-      <width>512</width>
-      <height>360</height>
->>>>>>> 6a304bb74efd4b4133a62ad52a118ec256e0fd32
-=======
->>>>>>> 7eb85d0589d9ec6e7c402493be7eb08aedad1a7d
+>>>>>>> 347aba52181178afd1c7e84f4892d67d01918223
      </rect>
+    </property>
+    <property name="autoFillBackground">
+     <bool>false</bool>
     </property>
     <property name="text">
      <string>TextLabel</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
     </property>
    </widget>
   </widget>
@@ -2004,17 +1999,12 @@
      <x>0</x>
      <y>0</y>
 <<<<<<< HEAD
-<<<<<<< HEAD
-     <width>741</width>
-     <height>30</height>
-=======
      <width>512</width>
      <height>27</height>
->>>>>>> 6a304bb74efd4b4133a62ad52a118ec256e0fd32
 =======
      <width>741</width>
      <height>30</height>
->>>>>>> 7eb85d0589d9ec6e7c402493be7eb08aedad1a7d
+>>>>>>> 347aba52181178afd1c7e84f4892d67d01918223
     </rect>
    </property>
   </widget>

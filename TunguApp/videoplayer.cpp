@@ -55,7 +55,8 @@ void VideoPlayer::openFile(const QString &fileName)
 void VideoPlayer::snapshot()
 {
 
-    ImageCrop* imageCrop = new ImageCrop();
+    ImageCrop *imageCrop;
+    imageCrop = new ImageCrop();
     imageCrop->open(video->snapshot());
     imageCrop->setTime(movie->currentTime());
     imageCrop->show();

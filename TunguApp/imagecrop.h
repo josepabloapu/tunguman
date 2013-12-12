@@ -15,17 +15,19 @@ public:
     void setTime(int);
     int getTime();
     QPixmap crop();
-    QRect getRect();
-    QLabel* imageView;
-    QRect rectangle;
-    QPixmap pixmap;
+    QRect getRect(QEvent*);
+    int xi;
+    int yi;
+    int xf;
+    int yf;
     QPainter painter;
-    int xi, yi, xf, yf;
 
 private:
     bool variable;
     int timeMS;
-
+    QLabel* imageView;
+    QRect rectangle;
+    QPixmap pixmap;
 
 signals:
 

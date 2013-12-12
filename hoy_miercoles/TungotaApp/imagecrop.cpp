@@ -2,11 +2,12 @@
 #include <QPainter>
 #include <QEvent>
 #include <QMouseEvent>
+#include <QLabel>
 
 ImageCrop::ImageCrop(QWidget *parent) :
     QWidget(parent)
 {
-    imageView = new QLabel;
+    imageView = new QLabel();
     QRect rectangle;
     QPixmap pixmap;
     QPainter painter;
@@ -42,8 +43,8 @@ int ImageCrop::getTime()
 
 QPixmap ImageCrop::crop()
 {
-    QEvent* event;
-    rectangle = getRect(event);
+
+    rectangle = getRect();
     QPixmap crop = pixmap.copy(rectangle);
     return crop;
 
@@ -52,7 +53,11 @@ QPixmap ImageCrop::crop()
 
 
 
-QRect ImageCrop::getRect(QEvent* event){
+QRect ImageCrop::getRect(){
+
+    QEvent* event;
+
+
     if (event->type() == QEvent::MouseMove)
     {
         QMouseEvent* mouseEvent = static_cast<QMouseEvent*>(event);
@@ -64,6 +69,7 @@ QRect ImageCrop::getRect(QEvent* event){
         }
 
         if(variable==true){
+
             xf = mouseEvent->pos().x();
             yf = mouseEvent->pos().y();
 
@@ -79,16 +85,18 @@ QRect ImageCrop::getRect(QEvent* event){
             imageView->setPixmap(pixmap);
 
 
-        if(mouseEvent->button() == Qt::RightButton){
+                if(mouseEvent->button() == Qt::RightButton){
 
-            variable = false;
+                    variable = false;
 
-            return QRect(xi,yi,xf,yf);
+                    return QRect(xi,yi,xf,yf);
+
+                }
+
+            }
 
         }
 
-    }
 
     }
-}
 

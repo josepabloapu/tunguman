@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created: Mon Dec 9 00:51:42 2013
+** Created: Thu Dec 12 05:21:17 2013
 **      by: Qt User Interface Compiler version 4.8.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -342,11 +342,11 @@ public:
         label_frame->setFont(font4);
         image_view = new QLabel(centralWidget);
         image_view->setObjectName(QString::fromUtf8("image_view"));
-        image_view->setGeometry(QRect(20, 10, 511, 287));
+        image_view->setGeometry(QRect(40, 20, 511, 251));
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QString::fromUtf8("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 578, 27));
+        menuBar->setGeometry(QRect(0, 0, 578, 30));
         MainWindow->setMenuBar(menuBar);
         mainToolBar = new QToolBar(MainWindow);
         mainToolBar->setObjectName(QString::fromUtf8("mainToolBar"));
@@ -356,8 +356,6 @@ public:
         MainWindow->setStatusBar(statusBar);
 
         retranslateUi(MainWindow);
-        QObject::connect(button_zoomin, SIGNAL(clicked()), MainWindow, SLOT(zoomIn()));
-        QObject::connect(button_zoomout, SIGNAL(clicked()), MainWindow, SLOT(zoomOut()));
 
         QMetaObject::connectSlotsByName(MainWindow);
     } // setupUi
@@ -377,7 +375,7 @@ public:
         label_action->setText(QApplication::translate("MainWindow", "Acci\303\263n", 0, QApplication::UnicodeUTF8));
         display_frame->setText(QApplication::translate("MainWindow", "TextLabel", 0, QApplication::UnicodeUTF8));
         label_frame->setText(QApplication::translate("MainWindow", "Frame:", 0, QApplication::UnicodeUTF8));
-        image_view->setText(QString());
+        image_view->setText(QApplication::translate("MainWindow", "TextLabel", 0, QApplication::UnicodeUTF8));
     } // retranslateUi
 
 };

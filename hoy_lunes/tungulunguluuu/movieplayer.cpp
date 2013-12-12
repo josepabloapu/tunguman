@@ -2,6 +2,9 @@
 #include <QtGui>
 #include <QImage>
 #include <QRect>
+#include <QtDebug>
+#include<QMouseEvent>
+
 #include "imageviewer.h"
 #include "movieplayer.h"
 #include "mainwindow.h"
@@ -21,7 +24,8 @@ MoviePlayer::MoviePlayer(QWidget *parent)
     movieLabel->setSizePolicy(QSizePolicy::Ignored, QSizePolicy::Ignored);
     movieLabel->setBackgroundRole(QPalette::Dark);
     movieLabel->setAutoFillBackground(true);
-
+    movieLabel->installEventFilter(this);
+    movieLabel->setMouseTracking(true);
     currentMovieDirectory = "movies";
 
     createControls();
@@ -52,67 +56,48 @@ MoviePlayer::MoviePlayer(QWidget *parent)
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 void MoviePlayer::photoButtonClicked() {
-
-
-
     MainWindow *mainWindow;
-
     mainWindow = new MainWindow();
-
     //QMouseEvent *event;
-
-   // QPixmap* zoom;
-
-
-
+    // QPixmap* zoom;
     //zoom = mousePressEventZoom(event, movieLabel);
-
-
-
-//    mainWindow->setpixmap(zoom);
-
-
+    //    mainWindow->setpixmap(zoom);
    mainWindow->open(movie->currentImage());
-
     //PaintArea* paintWindow = new PaintArea(mainWindow);
     //paintWindow->setImage(movie->currentImage());
-
     mainWindow->show();
-
-
-
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-QPixmap* MoviePlayer::mousePressEventZoom(QMouseEvent *qevent, QWidget* parent){
 
-    int* xi=0; int* yi=0;
-    int* xf=0; int* yf=0;
+    QPixmap* MoviePlayer::mousePressEventZoom(QMouseEvent *qevent, QWidget* parent){
 
-    const QRect *Selection = new QRect();
-
-    while(qevent->button() != Qt::MidButton){
-
-    if (qevent->button() == Qt::LeftButton ){
+        int* xi=0; int* yi=0;
+        int* xf=0; int* yf=0;
 
 
-        movieLabel->mapFromGlobal(QCursor::pos()).x();
-            *xi = QCursor::pos().x();
-        movieLabel->mapFromGlobal(QCursor::pos()).y();
-            *yi = QCursor::pos().y();
+        const QRect *Selection = new QRect();
 
 
 
-         }
+        if (qevent->button() == Qt::LeftButton){
 
-    if (qevent->button() == Qt::RightButton){
+            movieLabel->mapFromGlobal(QCursor::pos()).x();
+                *xi = QCursor::pos().x();
+            movieLabel->mapFromGlobal(QCursor::pos()).y();
+                *yi = QCursor::pos().y();
 
+            qDebug() << *xi << "-" << *yi;
 
-        movieLabel->mapFromGlobal(QCursor::pos()).x();
-            *xf = QCursor::pos().x();
-        movieLabel->mapFromGlobal(QCursor::pos()).y();
-            *yf = QCursor::pos().y();
+       }
+
+        if (qevent->button() == Qt::RightButton){
+
+            movieLabel->mapFromGlobal(QCursor::pos()).x();
+                *xf = QCursor::pos().x();
+            movieLabel->mapFromGlobal(QCursor::pos()).y();
+                *yf = QCursor::pos().y();
 
             Selection->getCoords(xi, yi, xf, yf);
 
@@ -122,13 +107,15 @@ QPixmap* MoviePlayer::mousePressEventZoom(QMouseEvent *qevent, QWidget* parent){
 
            return Zoom;
 
-    }
+            qDebug() << *xf << "-" << *yf;
+       }
 
 
 
     }
 
-}
+
+
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////7

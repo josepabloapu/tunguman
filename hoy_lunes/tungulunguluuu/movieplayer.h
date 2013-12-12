@@ -29,7 +29,6 @@ public:
     MoviePlayer(QWidget *parent = 0);
     void openFile(const QString &fileName);
 
-
     QPixmap* mousePressEventZoom(QMouseEvent *qevent, QWidget* parent);
 
 

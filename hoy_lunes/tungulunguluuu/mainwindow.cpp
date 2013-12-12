@@ -6,6 +6,9 @@
 #include <QVector>
 #include <QtDebug>
 
+#include <QFile>
+#include <QCoreApplication>
+#include <QTextStream>
 #include <QMouseEvent>
 #include <iostream>
 #include <QtGui>
@@ -45,6 +48,7 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event){
         statusBar()->showMessage(QString("Cursor position (%1,%2)").arg(mouseEvent->pos().x()).arg(mouseEvent->pos().y()));
 
         if (variable == true){
+            
             coordenadas+= "Pos X: ";
              coordenadas+= QString::number(mouseEvent->pos().x());
               coordenadas+= "Pos Y: ";

@@ -46,6 +46,7 @@ private:
     Phonon::MediaObject *movie;
     Phonon::VideoWidget *video;
     Phonon::AudioOutput *audio;
+
     QToolButton *openButton;
     QToolButton *playButton;
     QToolButton *pauseButton;
@@ -55,9 +56,8 @@ private:
 
     QCheckBox *fitCheckBox;
 
-
-    QLabel *sliderLabel;
     Phonon::SeekSlider *seekSlider;
+    QSpinBox *seekSpinBox;
     Phonon::VolumeSlider *volumeSlider;
 
     QSpinBox *speedSpinBox;

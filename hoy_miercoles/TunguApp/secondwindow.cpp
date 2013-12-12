@@ -4,7 +4,7 @@
 
 SecondWindow::SecondWindow(QWidget *parent) :
     QMainWindow(parent),
-    ui(new Ui::SecondWindow)
+    ui(new Ui2::SecondWindow)
 {
     ui->setupUi(this);
     QRect rect;
@@ -24,9 +24,9 @@ void SecondWindow::open(QImage qimage)
 {
     ui->setupUi(this);
     QImage picture = qimage;
-    ui->image_view->setScaledContents(true);
+    ui2->image_view->setScaledContents(true);
     pixmap = QPixmap::fromImage(picture);
-    ui->image_view->setPixmap(pixmap);
+    ui2->image_view->setPixmap(pixmap);
     //ui->image_view->setMouseTracking(true);
     //ui->image_view->installEventFilter(this);
     //QPixmap crop = Crop();

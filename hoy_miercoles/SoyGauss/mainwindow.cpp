@@ -165,12 +165,14 @@ void MainWindow::zoomOut(){
 
 }
 
+/*
 void MainWindow::scaleImage(double factor)
 
 {
     int scaleFactor = 1;
 
-    Q_ASSERT(imageLabel->pixmap());
+    Q_ASSERT(imageView->pixmap());
     scaleFactor *= factor;
 
 }
+*/

@@ -4,7 +4,7 @@
 #include <QMainWindow>
 #include <QRect>
 
-namespace Ui {
+namespace Ui2 {
 class SecondWindow;
 }
 
@@ -23,7 +23,7 @@ public:
     bool variable;
 
 private:
-    Ui::SecondWindow *ui;
+    Ui2::SecondWindow *ui;
 };
 
 #endif // SECONDWINDOW_H

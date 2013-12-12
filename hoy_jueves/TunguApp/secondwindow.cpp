@@ -91,13 +91,16 @@ bool SecondWindow::eventFilter(QObject *obj, QEvent *event){
                             QRect rect = QRect(xi,yi,xf,yf);
                             variable = false;
                             QPixmap crop = pixmap.copy (rect);
-                            Main(crop);
+
+
+                           int h = yf - yi;
+                           int w = xf - xi;
+
+                           Main(crop, h, w);
 
                               return true;
 
-                                     }
-
-
+                      }
 
             }
 
@@ -107,10 +110,10 @@ bool SecondWindow::eventFilter(QObject *obj, QEvent *event){
 
     }
 
-void SecondWindow::Main (QPixmap pix){
+void SecondWindow::Main (QPixmap pix, int h, int w){
 
     MainWindow* mainwindow = new MainWindow();
-    mainwindow->open(pix);
+    mainwindow->open(pix, h, w);
     mainwindow->show();
 
 
@@ -125,7 +128,6 @@ int SecondWindow::getTime()
 {
     return this->timeMS;
 }
-
 
 
 

@@ -1,5 +1,6 @@
 #include "videoplayer.h"
 #include "mainwindow.h"
+#include "secondwindow.h"
 
 #include <QFileDialog>
 #include <QString>
@@ -54,8 +55,8 @@ void VideoPlayer::openFile(const QString &fileName)
 void VideoPlayer::snapshot()
 {
 
-    MainWindow *mainWindow;
-    mainWindow = new MainWindow();
+    SecondWindow *mainWindow;
+    mainWindow = new SecondWindow();
     mainWindow->open(video->snapshot());
     mainWindow->setTime(movie->currentTime());
     mainWindow->show();

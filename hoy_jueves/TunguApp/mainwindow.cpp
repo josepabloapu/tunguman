@@ -20,6 +20,7 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     QPainter painter;
+    variable = false;
 
     QSqlDatabase db = QSqlDatabase::addDatabase( "QMYSQL" );
     QSqlQuery qry;
@@ -55,10 +56,7 @@ void MainWindow::open(QImage qimage)
     ui->image_view->setScaledContents(true);
 
     pixmap = QPixmap::fromImage(picture);
-
-
     pixmap.scaled(Width,Height,Qt::KeepAspectRatio);
-
 
     ui->image_view->setPixmap(pixmap);
     pixmap.scaled(Width,Height,Qt::KeepAspectRatio);
@@ -72,11 +70,9 @@ void MainWindow::open(QImage qimage)
 void MainWindow::open(QPixmap pix, int h, int w)
 {
     ui->setupUi(this);
-
     ui->image_view->setScaledContents(true);
 
     pixmap = pix;
-
     pixmap.scaled(Width,Height,Qt::KeepAspectRatio);
 
     ui->image_view->setPixmap(pixmap);
@@ -85,7 +81,6 @@ void MainWindow::open(QPixmap pix, int h, int w)
 
     scaleH = 251/h;
     scaleW = 511/w;
-
 }
 
 bool MainWindow::eventFilter(QObject *obj, QEvent *event){
@@ -183,7 +178,7 @@ void MainWindow::zoomOut(){
     ui->image_view->setPixmap(pixmap);
 
 }
-
+/*
 void MainWindow::scaleImage(double factor)
 
 {
@@ -193,7 +188,7 @@ void MainWindow::scaleImage(double factor)
     scaleFactor *= factor;
 
 }
-
+*/
 void MainWindow::on_button_save_clicked()
 {
     QSqlQuery qry;
@@ -214,3 +209,4 @@ void MainWindow::setTime(int time)
 {
     this->timeMS = time;
 }
+

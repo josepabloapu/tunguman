@@ -14,7 +14,7 @@ int x=-1; int y=-1;
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
-    ui(new Ui::SecondWindow)
+    ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
     QPainter painter;

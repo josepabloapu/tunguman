@@ -114,6 +114,7 @@ void SecondWindow::Main (QPixmap pix, int h, int w){
 
     MainWindow* mainwindow = new MainWindow();
     mainwindow->open(pix, h, w);
+    mainwindow->setTime(this->getTime());
     mainwindow->show();
 
 

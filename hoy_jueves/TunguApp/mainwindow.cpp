@@ -63,8 +63,6 @@ void MainWindow::open(QImage qimage)
     ui->image_view->setMouseTracking(true);
     ui->image_view->installEventFilter(this);
 
-    ui->dropdown_team->addItem("Home");
-    ui->dropdown_team->addItem("Away");
 }
 
 void MainWindow::open(QPixmap pix, int h, int w)
@@ -81,6 +79,9 @@ void MainWindow::open(QPixmap pix, int h, int w)
 
     scaleH = 251/h;
     scaleW = 511/w;
+
+    ui->dropdown_team->addItem("Home");
+    ui->dropdown_team->addItem("Away");
 }
 
 bool MainWindow::eventFilter(QObject *obj, QEvent *event){
@@ -90,23 +91,24 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event){
         mouseEvent = static_cast<QMouseEvent*>(event);
         statusBar()->showMessage(QString("Cursor position (%1,%2)").arg(mouseEvent->pos().x()).arg(mouseEvent->pos().y()));
 
-        QSqlQuery qry;
-
-        qry.prepare("INSERT INTO names (time, name, team, number, xpos, ypos) VALUES (:time, :name, :team, :number, :xpos, :ypos)");
-        qry.bindValue(":time",this->timeMS);
-        qry.bindValue(":name",ui->input_name->text());
-        qry.bindValue(":team",ui->dropdown_team->currentText());
-        qry.bindValue(":number",ui->input_number->text());
-        qry.bindValue(":xpos",mouseEvent->pos().x());
-        qry.bindValue(":ypos",mouseEvent->pos().y());
-
-        if(!qry.exec()) qDebug() << qry.lastError();
-        else qDebug("Inserted!");
-
         if (variable == true)
         {
-           int cosx =0;
-           int cosy =0;
+
+            QSqlQuery qry;
+
+            qry.prepare("INSERT INTO names (time, name, team, number, xpos, ypos) VALUES (:time, :name, :team, :number, :xpos, :ypos)");
+            qry.bindValue(":time",this->timeMS);
+            qry.bindValue(":name",ui->input_name->text());
+            qry.bindValue(":team",ui->dropdown_team->currentText());
+            qry.bindValue(":number",ui->input_number->text());
+            qry.bindValue(":xpos",mouseEvent->pos().x());
+            qry.bindValue(":ypos",mouseEvent->pos().y());
+
+            if(!qry.exec()) qDebug() << qry.lastError();
+            else qDebug("Inserted!");
+
+            int cosx =0;
+            int cosy =0;
                 if(x!=-1 && y!=-1)
                 {
                     if(x!=0 && y!=0)

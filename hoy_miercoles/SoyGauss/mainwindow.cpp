@@ -8,7 +8,7 @@
 #include <QDebug>
 
 int Height=30;
-int Width=200;
+int Width=100;
 int x=-1; int y=-1;
 
 
@@ -41,12 +41,13 @@ void MainWindow::open(QImage qimage)
 
 
     ui->image_view->setPixmap(pixmap);
+    pixmap.scaled(Width,Height,Qt::KeepAspectRatio);
     ui->image_view->setMouseTracking(true);
     ui->image_view->installEventFilter(this);
 
     }
 
-void MainWindow::open(QPixmap pix)
+void MainWindow::open(QPixmap pix, int h, int w)
 
 {
     ui->setupUi(this);
@@ -63,6 +64,10 @@ void MainWindow::open(QPixmap pix)
     ui->image_view->setMouseTracking(true);
     ui->image_view->installEventFilter(this);
 
+
+    scaleH = 251/h;
+    scaleW = 511/w;
+
     }
 
 bool MainWindow::eventFilter(QObject *obj, QEvent *event){
@@ -77,11 +82,14 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event){
 
         if (variable == true){
 
-            int calibrarx =0; //ERROR AQUI ES UNA APROXIMACION HAY QUE CUADRAR LOS 2 MARCOS DE REFERENCIA!!!!***************************
-            int calibrary =0;
+
+           int cosx =0;
+           int cosy =0;
 
             if(x!=-1 && y!=-1){
+
                if(x!=0 && y!=0){
+
             qDebug() << x;
             qDebug() << "----";
             qDebug() << y;
@@ -90,7 +98,7 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event){
            QColor Color = QColor(235,20,230,255);
            QPen pen(Color, 8, Qt::SolidLine);
            painter.setPen(pen);
-           painter.drawLine(x+calibrarx,y+calibrary,mouseEvent->pos().x()+calibrarx,mouseEvent->pos().y()+calibrary);
+           painter.drawPoint((3*mouseEvent->pos().x()/scaleW) + cosx, (4.5*mouseEvent->pos().y()/scaleH) + cosy);
            ui->image_view->setPixmap(pixmap);
 
             }
@@ -165,12 +173,4 @@ void MainWindow::zoomOut(){
 
 }
 
-void MainWindow::scaleImage(double factor)
 
-{
-    int scaleFactor = 1;
-
-    Q_ASSERT(imageLabel->pixmap());
-    scaleFactor *= factor;
-
-}

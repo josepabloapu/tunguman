@@ -16,7 +16,7 @@ class MainWindow : public QMainWindow
 
 public:
     void open(QImage);
-    void open(QPixmap);
+    void open(QPixmap, int, int);
     bool mousePressEventPaint(QObject *obj, QEvent *event);
     void setpixmap(QPixmap* image_pixmap);
     QString coordenadas;
@@ -26,6 +26,8 @@ public:
     int Width;
     int x; int y;
     QPainter painter;
+    int scaleH;
+    int scaleW;
 
 
 public:

@@ -17,9 +17,8 @@ public:
     explicit SecondWindow(QWidget *parent = 0);
     ~SecondWindow();
     void open(QImage qimage);
-    void Crop();
     QPixmap pixmap;
-    void Main (QPixmap);
+    void Main (QPixmap, int,int);
     QPainter painter;
     bool variable;
     bool eventFilter(QObject *obj, QEvent *event);

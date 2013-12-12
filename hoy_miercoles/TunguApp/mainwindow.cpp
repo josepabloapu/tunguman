@@ -1,4 +1,5 @@
 #include "mainwindow.h"
+#include "secondwindow.h"
 #include "ui_mainwindow.h"
 #include <QGraphicsScene>
 #include <QMouseEvent>
@@ -13,14 +14,10 @@ int x=-1; int y=-1;
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
-    ui(new Ui::MainWindow)
+    ui(new Ui::SecondWindow)
 {
     ui->setupUi(this);
-
     QPainter painter;
-
-
-
 }
 
 MainWindow::~MainWindow()
@@ -31,9 +28,7 @@ MainWindow::~MainWindow()
 void MainWindow::open(QImage qimage)
 
 {
-
     ui->setupUi(this);
-
 
     QImage picture = qimage;
 

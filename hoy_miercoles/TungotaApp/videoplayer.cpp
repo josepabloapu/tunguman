@@ -1,5 +1,6 @@
 #include "videoplayer.h"
-#include "secondwindow.h"
+#include "mainwindow.h"
+#include "imagecrop.h"
 
 #include <QFileDialog>
 #include <QString>
@@ -7,7 +8,7 @@
 #include <QImage>
 
 VideoPlayer::VideoPlayer(QWidget *parent) : QWidget(parent)
-{
+{   
     movie = new Phonon::MediaObject(this);
     video = new Phonon::VideoWidget(this);
     audio = new Phonon::AudioOutput(Phonon::VideoCategory,this);
@@ -30,7 +31,11 @@ VideoPlayer::VideoPlayer(QWidget *parent) : QWidget(parent)
 
 VideoPlayer::~VideoPlayer()
 {
-
+    delete movie;
+    delete video;
+    delete audio;
+    delete seekSlider;
+    delete volumeSlider;
 }
 
 void VideoPlayer::open()
@@ -50,19 +55,31 @@ void VideoPlayer::openFile(const QString &fileName)
 void VideoPlayer::snapshot()
 {
 
-    SecondWindow *mainWindow;
-    mainWindow = new SecondWindow();
-    mainWindow->open(video->snapshot());
-    mainWindow->show();
+    ImageCrop *imageCrop;
+    imageCrop = new ImageCrop();
+    imageCrop->open(video->snapshot());
+    imageCrop->setTime(movie->currentTime());
+    imageCrop->show();
 }
 
 void VideoPlayer::createControls()
 {
-    seekSlider = new Phonon::SeekSlider(this);
-    volumeSlider = new Phonon::VolumeSlider(this);
+    seekSlider = new Phonon::SeekSlider;
+    seekSlider->setMediaObject(movie);
+
+    seekSpinBox = new QSpinBox;
+    seekSpinBox->setRange(0, movie->totalTime());
+
+    volumeSlider = new Phonon::VolumeSlider;
+    volumeSlider->setAudioOutput(audio);
+
     controlsLayout = new QGridLayout;
-    controlsLayout->addWidget(seekSlider, 1, 1, 1, 5);
+    controlsLayout->addWidget(seekSlider, 1, 1, 1, 4);
+    controlsLayout->addWidget(seekSpinBox, 1, 5, 1, 1);
     controlsLayout->addWidget(volumeSlider, 1, 6, 1, 2);
+
+    //QObject::connect(seekSpinBox, SIGNAL(valueChanged(int)),seekSlider, SLOT(setValue(int)));
+    //QObject::connect(seekSlider, SIGNAL(valueChanged(int)),seekSpinBox, SLOT(setValue(int)));
 }
 
 void VideoPlayer::createButtons()

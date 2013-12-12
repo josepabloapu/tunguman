@@ -2,14 +2,11 @@
 #include "ui_secondwindow.h"
 #include <QPainter>
 
-
-
 SecondWindow::SecondWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::SecondWindow)
 {
     ui->setupUi(this);
-
     QRect rect;
     QPixmap pixmap;
 	bool variable = false;
@@ -25,25 +22,15 @@ SecondWindow::~SecondWindow()
 void SecondWindow::open(QImage qimage)
 
 {
-
     ui->setupUi(this);
-
-
     QImage picture = qimage;
-
     ui->image_view->setScaledContents(true);
-
     pixmap = QPixmap::fromImage(picture);
-
     ui->image_view->setPixmap(pixmap);
-    ui->image_view->setMouseTracking(true);
-    ui->image_view->installEventFilter(this);
-
-    QPixmap crop = Crop();
-
-
+    //ui->image_view->setMouseTracking(true);
+    //ui->image_view->installEventFilter(this);
+    //QPixmap crop = Crop();
 }
-
 
 QPixmap SecondWindow::Crop (){
 
@@ -104,10 +91,8 @@ QRect SecondWindow::getRect(QEvent* event){
 
 
 
+*/
 
-
-
-}
 
 
 
